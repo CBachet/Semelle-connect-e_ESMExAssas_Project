@@ -1,0 +1,77 @@
+
+
+
+<ion-content [fullscreen]="true">
+
+  <!--Page de connexion au semelle + page recherche bluetooth-->
+  <div *ngIf="folder === 'Connexion'">
+    
+    <h3>
+      Etat: {{connectEtat}}
+      <div style="width:20px;height:20px;background-color:red;float: right; margin-right : 10px;" 
+          *ngIf="connecte === false; else elseTemplate"></div>
+      <ng-template #elseTemplate>
+          <div style="width:20px;height:20px;background-color:rgb(36, 202, 64);float: right;  margin-right : 10px;" ></div>
+      </ng-template>
+    </h3>
+    <h3>Bluetooth: {{deviceSelected[0]}} </h3>
+    <br>
+    <ion-button color="success" expand="block" shape="round" [disabled]="connecte" 
+    (click)="onConnecte()">
+      <ion-icon slot="start" name="bluetooth"></ion-icon>
+      Connexion aux semelles
+    </ion-button>
+    <br>
+    <ion-button color="danger" expand="block" shape="round" [disabled]="(!connecte || mesure)" (click)="onDeconnecte()">
+      <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+      Déconnexion
+    </ion-button>
+    <br>
+    
+	
+	<!-- scan les appareils bluetooth a proximité et va les afficher à l'écran -->
+
+    <ion-button (click)="scan()" >
+      <ion-icon name="Bluetooth"></ion-icon>
+    </ion-button>
+    <ion-list>
+      <ion-item *ngFor="let device of devices">
+        <ion-button (click)="deviceSelected=[device.name,device.id]" >{{device.name || "Unnamed"}}</ion-button>
+      </ion-item>    
+    </ion-list>
+    
+  </div>
+
+  <!--Page de mesure+timer-->
+  <div *ngIf="folder === 'Mesure'">
+
+    <div class="text-center">
+      <h1>Timer:</h1>
+      <hr>
+      <h1>
+        <span class="label label-primary">{{_timer.minutes}}</span> minutes
+        <br><br>
+        <span class="label label-primary">{{_timer.secondes}}</span> secondes
+      </h1>
+      
+    </div>
+
+
+	<!-- va lancer le dialogue via bluetooth entre les 2 appareils-->
+    <br><br>
+    <ion-button color="success" expand="block" shape="round" [disabled]="mesure" 
+    (click)="onMesure()">
+      <ion-icon slot="start" name="bluetooth"></ion-icon>
+      Commencer la mesure
+    </ion-button>
+    <br>
+	<!-- va arreter le dialogue entre les appareil-->
+    <ion-button color="danger" expand="block" shape="round" [disabled]="!mesure" (click)="onArrete()">
+      <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+      Arreter la mesure
+    </ion-button>
+    <br>
+  
+  </div>
+
+</ion-content>
