@@ -3,7 +3,7 @@ Le code Arduino utilisé dans notre projet de semelle connectée lors de notre 4
 
 Le but de ce projet était de récupérer des informations de pressions plantaires d'un patient pendant sa marche et de les afficher sur une application mobile/tablette codé en Ionic. Le code Arduino permet de récupérer des informations depuis des capteurs de pressions, les découper et les envoyer via BLE (Bluetooth Low Energy) à l'application.
 
-Uniquement le code de l'application permettant de récupérer le signal BLE est présent dans le fichier "Application".
+Uniquement le code de l'application permettant de récupérer le signal BLE est présent dans le fichier "Application". Pour voir facilement ce code, il suffit de faire une recherche (Ctrl+f) sur la page "folder.page.ts"
 
 Pour faire fonctionner le BLE sous Ionic, ne pas oublier de faire toutes les installations necessaire pour faire les import du fichier "folder.page.ts": https://ionicframework.com/docs/native/ble/
 
